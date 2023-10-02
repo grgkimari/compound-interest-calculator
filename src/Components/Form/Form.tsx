@@ -1,5 +1,3 @@
-import React, { Dispatch, useReducer } from "react";
-import { FormContainer, HorizontalMultiInputSection } from "./Form.styles";
 import {
   Button,
   Divider,
@@ -9,13 +7,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import MainReducer, {
+import { Dispatch } from "react";
+import {
   UPDATE_COMPOUNDING_DURATION,
   UPDATE_COMPOUNDING_FREQUENCY,
   UPDATE_INTEREST_RATE,
   UPDATE_ORIGINAL_INVESTMENT,
   UPDATE_RECURRING_INVESTMENT,
 } from "../../Utils/MainReducer";
+import { FormContainer } from "./Form.styles";
 import { FormStateType, ReducerActionType } from "./Form.types";
 
 const Form = ({
