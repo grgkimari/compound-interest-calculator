@@ -14,6 +14,8 @@ import {
   UPDATE_INTEREST_RATE,
   UPDATE_ORIGINAL_INVESTMENT,
   UPDATE_RECURRING_INVESTMENT,
+  UPDATE_RECURRING_INVESTMENT_FREQUENCY,
+  UPDATE_TOTAL_AMOUNT,
 } from "../../Utils/MainReducer";
 import { FormContainer } from "./Form.styles";
 import { FormStateType, ReducerActionType } from "./Form.types";
@@ -25,6 +27,13 @@ const Form = ({
   formState: FormStateType;
   dispatch: Dispatch<ReducerActionType>;
 }) => {
+  const calculate = () => {
+    let result : number = formState.originalInvestment * Math.pow((1 + ((formState.annualInterest/100)/formState.compoundingFrequency)),formState.compoundingFrequency * formState.compoundingDuration)
+    dispatch({
+      type : UPDATE_TOTAL_AMOUNT,
+      payload : result
+    })
+  }
   console.log(`FormState : ${JSON.stringify(formState)}`);
   return (
     <FormContainer>
@@ -68,6 +77,10 @@ const Form = ({
         label="Recurring Investment Frequency"
         value={formState.recurringInvestmentFrequency}
         labelId="Recurring Investment Frequency Label"
+        onChange={(event) => dispatch({
+          type : UPDATE_RECURRING_INVESTMENT_FREQUENCY,
+          payload :  event.target.value as number
+        })}
       >
         <MenuItem value={12}>Monthly</MenuItem>
         <MenuItem value={4}>Quarterly</MenuItem>
@@ -96,7 +109,7 @@ const Form = ({
         onChange={(event) =>
           dispatch({
             type: UPDATE_COMPOUNDING_FREQUENCY,
-            payload: event.target.value as Number,
+            payload: event.target.value as number,
           })
         }
       >
@@ -119,7 +132,8 @@ const Form = ({
         }
         label="Compounding Duration in Years"
       />
-      <Button variant="contained">Calculate</Button>
+      <Button variant="contained"
+      onClick={() => calculate()}>Calculate</Button>
     </FormContainer>
   );
 };

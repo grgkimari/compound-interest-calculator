@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import { ResultPaneContainer } from './ResultPane.styles'
 
-const ResultPane = ({totalAmount} : {totalAmount : Number}) => {
+const ResultPane = ({totalAmount} : {totalAmount : number}) => {
   return (
     <ResultPaneContainer>
         <Typography variant='h4' color="success" id="Total Amount">{totalAmount.toString()}</Typography>

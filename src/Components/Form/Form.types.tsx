@@ -1,16 +1,16 @@
 
 export interface ReducerActionType{
     type : String
-    payload :  Number 
+    payload :  number 
 }
 
 export interface FormStateType{
     
-    originalInvestment : Number
-    recurringInvestment : Number,
-    recurringInvestmentFrequency : Number,
-    annualInterest : Number
-    compoundingFrequency : Number
-    compoundingDuration : Number
+    originalInvestment : number
+    recurringInvestment : number,
+    recurringInvestmentFrequency : number,
+    annualInterest : number
+    compoundingFrequency : number
+    compoundingDuration : number
 
 }
