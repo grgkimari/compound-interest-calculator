@@ -7,3 +7,8 @@ export interface GlobalStateType {
   compoundingDuration: number;
   totalAmount: number;
 }
+
+export interface GrowthChartDataType{
+  label : string
+  value : number
+}

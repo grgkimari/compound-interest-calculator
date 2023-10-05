@@ -19,6 +19,7 @@ import {
 } from "../../Utils/MainReducer";
 import { FormContainer } from "./Form.styles";
 import { FormStateType, ReducerActionType } from "./Form.types";
+import CalculateFutureValue from "../../Utils/FutureValueCalculator";
 
 const Form = ({
   formState,
@@ -28,7 +29,8 @@ const Form = ({
   dispatch: Dispatch<ReducerActionType>;
 }) => {
   const calculate = () => {
-    let result : number = formState.originalInvestment * Math.pow((1 + ((formState.annualInterest/100)/formState.compoundingFrequency)),formState.compoundingFrequency * formState.compoundingDuration)
+    
+    let result = CalculateFutureValue(formState.originalInvestment, (formState.recurringInvestment * formState.recurringInvestmentFrequency), formState.annualInterest, formState.compoundingDuration)
     dispatch({
       type : UPDATE_TOTAL_AMOUNT,
       payload : result
@@ -55,7 +57,7 @@ const Form = ({
           })
         }
       />
-      <Divider />
+    
       <InputLabel id="Recurring investment label">
         Recurring Investment Amount
       </InputLabel>
