@@ -1,13 +1,14 @@
 import {
   Button,
-  Divider,
   InputLabel,
   MenuItem,
   Select,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { GrowthChartDataType } from "../../App.types";
+import CalculateFutureValue from "../../Utils/FutureValueCalculator";
 import {
   UPDATE_COMPOUNDING_DURATION,
   UPDATE_COMPOUNDING_FREQUENCY,
@@ -19,18 +20,21 @@ import {
 } from "../../Utils/MainReducer";
 import { FormContainer } from "./Form.styles";
 import { FormStateType, ReducerActionType } from "./Form.types";
-import CalculateFutureValue from "../../Utils/FutureValueCalculator";
 
 const Form = ({
   formState,
   dispatch,
+  setChartDataState,
+  chartDataState
 }: {
   formState: FormStateType;
   dispatch: Dispatch<ReducerActionType>;
+  setChartDataState : Dispatch<SetStateAction<GrowthChartDataType[]>>;
+  chartDataState  : GrowthChartDataType[]
 }) => {
   const calculate = () => {
     
-    let result = CalculateFutureValue(formState.originalInvestment, (formState.recurringInvestment * formState.recurringInvestmentFrequency), formState.annualInterest, formState.compoundingDuration)
+    let result = CalculateFutureValue(setChartDataState, chartDataState, formState.originalInvestment, (formState.recurringInvestment * formState.recurringInvestmentFrequency), formState.annualInterest, formState.compoundingDuration)
     dispatch({
       type : UPDATE_TOTAL_AMOUNT,
       payload : result

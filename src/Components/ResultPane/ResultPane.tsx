@@ -1,12 +1,25 @@
-import { Typography } from '@mui/material'
+import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
 import { ResultPaneContainer } from './ResultPane.styles'
 
-const ResultPane = ({totalAmount} : {totalAmount : number}) => {
+const ResultPane = ({totalAmount, amountInvested} : {totalAmount : number, amountInvested : number}) => {
   return (
     <ResultPaneContainer>
-        <Typography variant='h6' color="success" id="Total Amount">{totalAmount.toString()}</Typography>
-        <Typography variant='h4' color="success" id="Invested Amount">1,000</Typography>
-        <Typography variant='h4' color="success" id="Compounded Amount">1,000</Typography>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell>Total Amount Invested</TableCell>
+              <TableCell>{amountInvested.toFixed(2).toString()}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Total Interest Earned</TableCell>
+              <TableCell>{(totalAmount - amountInvested).toFixed(2).toString()}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Future Value</TableCell>
+              <TableCell><Typography variant='h6'>{totalAmount.toFixed(2).toString()}</Typography></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
     </ResultPaneContainer>
   )
 }

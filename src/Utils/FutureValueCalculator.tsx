@@ -1,8 +1,10 @@
+import { Dispatch, SetStateAction } from "react";
 import { GrowthChartDataType } from "../App.types";
 
-const CalculateFutureValue = (initialInvestment :number, annualContribution : number, annualInterestRate : number, years : number) => {
-  //Keep track of values for visualization
-  const data : GrowthChartDataType[] = []
+const CalculateFutureValue = (setChartDataState : Dispatch<SetStateAction<GrowthChartDataType[]>>,chartDataState : GrowthChartDataType[],initialInvestment :number, annualContribution : number, annualInterestRate : number, years : number) => {
+  //Clear the current data points
+  setChartDataState([])
+  console.log("Cleared state.")
     // Convert the annual interest rate to a decimal
   const r = annualInterestRate / 100;
   
@@ -12,10 +14,14 @@ const CalculateFutureValue = (initialInvestment :number, annualContribution : nu
   for (let year = 1; year <= years; year++) {
     
     FV += annualContribution; 
-    data.push({
+    let currentState = chartDataState
+    console.log(`Current State before push : ${JSON.stringify(currentState)}`)
+    currentState.push({
       label : `Year ${year}`,
       value : FV
     })
+    console.log(`Current State after push : ${JSON.stringify(currentState)}`)
+    setChartDataState(currentState)
     if(year === years){
       return FV
     }
