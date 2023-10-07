@@ -8,7 +8,7 @@ export interface GlobalStateType {
   totalAmount: number;
 }
 
-export interface GrowthChartDataType{
-  label : string
-  value : number
+export interface GrowthChartDataType {
+  label: string;
+  value: number;
 }

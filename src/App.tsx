@@ -20,17 +20,17 @@ const InitialState: GlobalStateType = {
   totalAmount: 0,
 };
 
-
-
 function App() {
-  const [ChartDataState, setChartDataState] = useState<GrowthChartDataType[]>([])
+  const [ChartDataState, setChartDataState] = useState<GrowthChartDataType[]>(
+    []
+  );
   const [state, dispatch] = useReducer(MainReducer, InitialState);
-  console.log(`ChartDataState : ${JSON.stringify(ChartDataState)}`)
+  console.log(`ChartDataState : ${JSON.stringify(ChartDataState)}`);
   return (
     <div className="App">
       <Form
-        setChartDataState = {setChartDataState}
-        chartDataState ={ChartDataState}
+        setChartDataState={setChartDataState}
+        chartDataState={ChartDataState}
         dispatch={dispatch}
         formState={{
           originalInvestment: state.originalInvestment,
@@ -41,8 +41,16 @@ function App() {
           compoundingDuration: state.compoundingDuration,
         }}
       />
-      <ResultPane amountInvested={state.originalInvestment + (state.recurringInvestment * state.compoundingDuration * state.recurringInvestmentFrequency)} totalAmount={state.totalAmount}/>
-      <BarChart chartDataState ={ChartDataState}/>
+      <ResultPane
+        amountInvested={
+          state.originalInvestment +
+          state.recurringInvestment *
+            state.compoundingDuration *
+            state.recurringInvestmentFrequency
+        }
+        totalAmount={state.totalAmount}
+      />
+      <BarChart chartDataState={ChartDataState} />
     </div>
   );
 }

@@ -9,8 +9,7 @@ export const UPDATE_RECURRING_INVESTMENT_FREQUENCY =
 export const UPDATE_INTEREST_RATE = "UPDATE_INTEREST_RATE";
 export const UPDATE_COMPOUNDING_FREQUENCY = "UPDATE_COMPOUNDING_FREQUENCY";
 export const UPDATE_COMPOUNDING_DURATION = "UPDATE_COMPOUNDING_DURATION";
-export const UPDATE_TOTAL_AMOUNT = "UPDATE_TOTAL_AMOUNT"
-export const UPDATE_CHART_DATA = "UPDATE_CHART_DATA"
+export const UPDATE_TOTAL_AMOUNT = "UPDATE_TOTAL_AMOUNT";
 
 const MainReducer: Reducer<GlobalStateType, ReducerActionType> = (
   state: GlobalStateType,
@@ -20,8 +19,8 @@ const MainReducer: Reducer<GlobalStateType, ReducerActionType> = (
     case UPDATE_TOTAL_AMOUNT:
       return {
         ...state,
-        totalAmount : action.payload
-      }
+        totalAmount: action.payload,
+      };
     case UPDATE_COMPOUNDING_DURATION:
       return {
         ...state,
@@ -53,7 +52,6 @@ const MainReducer: Reducer<GlobalStateType, ReducerActionType> = (
         ...state,
         recurringInvestmentFrequency: action.payload,
       };
-    
     default:
       return state;
   }
