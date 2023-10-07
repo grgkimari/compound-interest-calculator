@@ -28,28 +28,30 @@ function App() {
   console.log(`ChartDataState : ${JSON.stringify(ChartDataState)}`);
   return (
     <div className="App">
-      <Form
-        setChartDataState={setChartDataState}
-        chartDataState={ChartDataState}
-        dispatch={dispatch}
-        formState={{
-          originalInvestment: state.originalInvestment,
-          recurringInvestment: state.recurringInvestment,
-          recurringInvestmentFrequency: state.recurringInvestmentFrequency,
-          annualInterest: state.annualInterest,
-          compoundingFrequency: state.compoundingFrequency,
-          compoundingDuration: state.compoundingDuration,
-        }}
-      />
-      <ResultPane
-        amountInvested={
-          state.originalInvestment +
-          state.recurringInvestment *
-            state.compoundingDuration *
-            state.recurringInvestmentFrequency
-        }
-        totalAmount={state.totalAmount}
-      />
+      <span className="TopSection">
+        <Form
+          setChartDataState={setChartDataState}
+          chartDataState={ChartDataState}
+          dispatch={dispatch}
+          formState={{
+            originalInvestment: state.originalInvestment,
+            recurringInvestment: state.recurringInvestment,
+            recurringInvestmentFrequency: state.recurringInvestmentFrequency,
+            annualInterest: state.annualInterest,
+            compoundingFrequency: state.compoundingFrequency,
+            compoundingDuration: state.compoundingDuration,
+          }}
+        />
+        <ResultPane
+          amountInvested={
+            state.originalInvestment +
+            state.recurringInvestment *
+              state.compoundingDuration *
+              state.recurringInvestmentFrequency
+          }
+          totalAmount={state.totalAmount}
+        />
+      </span>
       <BarChart chartDataState={ChartDataState} />
     </div>
   );

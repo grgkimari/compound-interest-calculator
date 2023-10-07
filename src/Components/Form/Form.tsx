@@ -4,7 +4,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { GrowthChartDataType } from "../../App.types";
@@ -25,27 +25,26 @@ const Form = ({
   formState,
   dispatch,
   setChartDataState,
-  chartDataState,
+  chartDataState
 }: {
   formState: FormStateType;
   dispatch: Dispatch<ReducerActionType>;
-  setChartDataState: Dispatch<SetStateAction<GrowthChartDataType[]>>;
-  chartDataState: GrowthChartDataType[];
+  setChartDataState : Dispatch<SetStateAction<GrowthChartDataType[]>>;
+  chartDataState  : GrowthChartDataType[]
 }) => {
   const calculate = () => {
-    let result = CalculateFutureValue(
-      setChartDataState,
-      chartDataState,
-      formState.originalInvestment,
-      formState.recurringInvestment * formState.recurringInvestmentFrequency,
-      formState.annualInterest,
-      formState.compoundingDuration
-    );
+    
+    let result = CalculateFutureValue(setChartDataState, chartDataState, formState.originalInvestment, (formState.recurringInvestment * formState.recurringInvestmentFrequency), formState.annualInterest, formState.compoundingDuration)
     dispatch({
-      type: UPDATE_TOTAL_AMOUNT,
-      payload: result,
-    });
-  };
+      type : UPDATE_TOTAL_AMOUNT,
+      payload : result
+    })
+    window.scrollTo({
+      top : 520,
+      left :0,
+      behavior : "smooth"
+    })
+  }
   console.log(`FormState : ${JSON.stringify(formState)}`);
   return (
     <FormContainer>
@@ -67,7 +66,7 @@ const Form = ({
           })
         }
       />
-
+    
       <InputLabel id="Recurring investment label">
         Recurring Investment Amount
       </InputLabel>
@@ -89,12 +88,10 @@ const Form = ({
         label="Recurring Investment Frequency"
         value={formState.recurringInvestmentFrequency}
         labelId="Recurring Investment Frequency Label"
-        onChange={(event) =>
-          dispatch({
-            type: UPDATE_RECURRING_INVESTMENT_FREQUENCY,
-            payload: event.target.value as number,
-          })
-        }
+        onChange={(event) => dispatch({
+          type : UPDATE_RECURRING_INVESTMENT_FREQUENCY,
+          payload :  event.target.value as number
+        })}
       >
         <MenuItem value={12}>Monthly</MenuItem>
         <MenuItem value={4}>Quarterly</MenuItem>
@@ -146,9 +143,8 @@ const Form = ({
         }
         label="Compounding Duration in Years"
       />
-      <Button variant="contained" onClick={() => calculate()}>
-        Calculate
-      </Button>
+      <Button variant="contained"
+      onClick={() => calculate()}>Calculate</Button>
     </FormContainer>
   );
 };
