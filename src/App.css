@@ -11,3 +11,9 @@
   margin-bottom: 1rem;
   
 }
+
+@media screen and (max-width : 480px){
+  .TopSection{ 
+    flex-direction: column;
+  }
+}

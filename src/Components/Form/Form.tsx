@@ -45,10 +45,11 @@ const Form = ({
       behavior : "smooth"
     })
   }
-  console.log(`FormState : ${JSON.stringify(formState)}`);
   return (
     <FormContainer>
-      <Typography variant="h6" color="primary">
+      <Typography variant="h6" sx={{
+        color : "black",
+      }}>
         Enter details below.
       </Typography>
       <InputLabel id="Original Investment Label">

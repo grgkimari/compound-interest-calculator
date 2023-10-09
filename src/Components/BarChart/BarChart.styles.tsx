@@ -6,4 +6,8 @@ export const BarChartContainer = styled('div')`
     height : clamp(350px, 55vw, 570px );
     margin: auto;
     background-color:#f7e095;
+    @media screen and (max-width : 480px){
+        max-width: 460px;
+        margin: 10px;
+    }
 `

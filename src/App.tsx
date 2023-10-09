@@ -25,7 +25,6 @@ function App() {
     []
   );
   const [state, dispatch] = useReducer(MainReducer, InitialState);
-  console.log(`ChartDataState : ${JSON.stringify(ChartDataState)}`);
   return (
     <div className="App">
       <span className="TopSection">

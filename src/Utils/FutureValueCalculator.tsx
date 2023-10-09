@@ -27,12 +27,12 @@ const CalculateFutureValue = (
   for (let year = 1; year <= years; year++) {
     FV += annualContribution;
     let currentState = chartDataState;
-    console.log(`Current State before push : ${currentState}`);
+    
     currentState.push({
       label: `Year ${year}`,
       value: FV,
     });
-    console.log(`Current State after push : ${currentState}`);
+    
     setChartDataState(currentState);
     if (year === years) {
       return FV;
@@ -41,7 +41,7 @@ const CalculateFutureValue = (
       `Amount at the end of year ${year}:\nBefore applying interest : ${FV}`
     );
     FV *= 1 + r;
-    console.log(`After applying interest : ${FV}`);
+    
   }
   return parseFloat(FV.toFixed(2));
 };
